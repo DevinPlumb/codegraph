@@ -6,7 +6,7 @@
    ```
    REACT_APP_OPENAI_API_KEY=your-api-key
    ```
-4. Run `npm run start` and navigate to `http://3000` in your browser
+4. Run `npm run start` and navigate to `http://localhost:3000` in your browser
 
 ## Demo
 https://github.com/user-attachments/assets/fa0c4fcd-cb47-4080-bb8d-fef6f6acd381
