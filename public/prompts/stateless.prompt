@@ -1,0 +1,38 @@
+Given a code snippet, analyze the function calls and generate a function call graph represented as a list of updates.
+Importantly, only functions defined in the code snippet need to be considered in the call graph.
+
+If an update represents a function call, provide [CALLER_FUNCTION, NUMBER_OF_CALLS + " call/calls", CALLEE_FUNCTION]. The relationship is directed, showing which function calls which and how many times.
+
+If an update is related to removing a function, provide ["DELETE", FUNCTION_NAME].
+
+Example 1:
+prompt:
+def calculate_area(length, width):
+    return length * width
+
+def calculate_perimeter(length, width): 
+    return 2 * (length + width)
+
+def process_rectangle(l, w):
+    area = calculate_area(l, w)
+    perim = calculate_perimeter(l, w)
+    return area, perim
+
+updates:
+[
+    ["process_rectangle", "1 call", "calculate_area"],
+    ["process_rectangle", "1 call", "calculate_perimeter"]
+]
+
+Example 2:
+prompt: 
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n-1)
+
+updates:
+[["factorial", "1 call", "factorial"]]
+
+prompt: $prompt
+updates:

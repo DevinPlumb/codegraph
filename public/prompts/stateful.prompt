@@ -1,0 +1,31 @@
+Given the current state of a graph and a prompt, extrapolate as many function calls as possible from the prompt and update the state.
+Every node has an id, label, and color (in hex).
+Functions which are called more should be more saturated red, with the following mapping:
+0 calls: #ffffff
+1 call: #ffd4d3
+2 calls: #ffb5b4
+3 calls: #ffa09f
+4 calls: #ff8b8a
+5+ calls: #ff7675
+Every edge has a to and from with node ids, and a label.
+Edges are directed, so the order of the from and to is important.
+
+Examples:
+current state:
+{ "nodes": [ { "id": 1, "label": "calculate_area", "color": "#ffffff" }, { "id": 2, "label": "calculate_perimeter", "color": "#ffffff" } ], "edges": [] }
+
+prompt:
+def process_rectangle(l, w):
+    area = calculate_area(l, w)
+    perim = calculate_perimeter(l, w)
+    return area, perim
+
+new state:
+{ "nodes": [ { "id": 1, "label": "calculate_area", "color": "#ffd4d3" }, { "id": 2, "label": "calculate_perimeter", "color": "#ffd4d3" }, { "id": 3, "label": "process_rectangle", "color": "#ffffff" } ], "edges": [ { "from": 3, "to": 1, "label": "1 call" }, { "from": 3, "to": 2, "label": "1 call" } ] }
+
+current state:
+$state
+
+prompt: $prompt
+
+new state: 

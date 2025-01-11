@@ -1,0 +1,53 @@
+@import '@fontsource/jetbrains-mono';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-900 text-white font-mono min-h-screen;
+}
+
+.container {
+  @apply w-full max-w-[2000px] mx-auto p-8 min-h-screen flex flex-col;
+}
+
+.headerText {
+  @apply text-3xl sm:text-4xl font-bold text-center mb-8 text-blue-400;
+}
+
+.graphContainer {
+  @apply bg-gray-800 rounded-xl p-8 shadow-xl flex-grow w-full relative transition-all duration-200;
+  height: calc(100vh - 136px);
+  min-height: 500px;
+}
+
+.graphContainer.empty {
+  @apply border-2 border-dashed border-gray-600;
+}
+
+.graphContainer.dragging {
+  @apply border-blue-400 bg-gray-700;
+}
+
+.dropzone {
+  @apply flex flex-col items-center justify-center text-gray-400 space-y-4;
+  height: 100%;
+}
+
+.dropzone p {
+  @apply text-xl;
+}
+
+.supportedFormats {
+  @apply text-sm opacity-75;
+}
+
+.clearIcon {
+  @apply absolute right-6 top-6 text-gray-400 hover:text-white text-2xl font-bold z-10 
+         w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 
+         transition-colors duration-200;
+}
+
+.footer {
+  @apply text-center text-gray-400 mt-4 text-sm;
+}
