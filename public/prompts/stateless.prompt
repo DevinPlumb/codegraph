@@ -1,4 +1,5 @@
-Given a code snippet, analyze the function calls and generate a function call graph represented as a list of updates.
+Given a code snippet, analyze the function calls and generate a complete function call graph represented as a list of updates.
+Perform a deep, recursive analysis of all function calls, including indirect calls (when a function calls another function that then calls others).
 Importantly, only functions defined in the code snippet need to be considered in the call graph.
 
 If an update represents a function call, provide [CALLER_FUNCTION, NUMBER_OF_CALLS + " call/calls", CALLEE_FUNCTION]. The relationship is directed, showing which function calls which and how many times.
@@ -7,21 +8,20 @@ If an update is related to removing a function, provide ["DELETE", FUNCTION_NAME
 
 Example 1:
 prompt:
-def calculate_area(length, width):
-    return length * width
+def helper(x):
+    return x * 2
 
-def calculate_perimeter(length, width): 
-    return 2 * (length + width)
+def calculate(n):
+    return helper(n)
 
-def process_rectangle(l, w):
-    area = calculate_area(l, w)
-    perim = calculate_perimeter(l, w)
-    return area, perim
+def main():
+    result = calculate(5)
+    return result
 
 updates:
 [
-    ["process_rectangle", "1 call", "calculate_area"],
-    ["process_rectangle", "1 call", "calculate_perimeter"]
+    ["main", "1 call", "calculate"],
+    ["calculate", "1 call", "helper"]
 ]
 
 Example 2:
